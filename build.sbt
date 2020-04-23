@@ -16,6 +16,14 @@ lazy val testkit = project
   .settings(Dependencies.testKit)
   .dependsOn(core)
 
+
+lazy val akkaPersistenceQueryProvider = project
+  .in(file("akka-projection-persistence-query-provider"))
+  .settings(name := "akka-projection-persistence-query-provider")
+  .settings(Dependencies.akkaPersistenceQueryProvider)
+  .dependsOn(core)
+  .dependsOn(testkit % "test->test")
+
 // provides offset storage backed by a JDBC (Slick) table
 // commits can be transctional or non-transactional (at-least-once with buffering)
 lazy val slick = Project(id = "akka-projection-slick", base = file("akka-projection-slick"))
